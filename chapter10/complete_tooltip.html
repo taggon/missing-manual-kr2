@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>툴팁</title>
+<link href="../_css/site.css" rel="stylesheet">
+<style>
+.trigger {
+	cursor : help;
+	border-bottom: 1px dashed white;
+}
+.trigger:hover {
+	color: rgb(255,0,0);
+}
+
+.tooltip {
+	width: 25%;
+	padding: 5px;
+	background-color: white;
+	border: 3px solid rgb(195,151,51);
+	border-radius : 5px;
+}
+
+.tooltip h2 {
+
+}
+.tooltip p {
+	color: black !important;
+}
+
+.main {
+width: 800px;
+}
+</style>
+<script src="../_js/jquery-1.11.2.min.js"></script>
+<script>
+$(document).ready(function(e) {
+	$('.tooltip').hide();
+	$('.trigger').mouseover(function() {
+		var ttLeft,
+		    ttTop,
+			$this=$(this),
+			$tip = $($this.attr('data-tooltip')),
+		    triggerPos = $this.offset(),
+		    triggerH = $this.outerHeight(),
+		    triggerW = $this.outerWidth(),
+			tipW = $tip.outerWidth(),
+		    tipH = $tip.outerHeight(),
+		    screenW = $(window).width(),
+			scrollTop = $(document).scrollTop();
+
+		if (triggerPos.top - tipH - scrollTop > 0 ) {
+			ttTop = triggerPos.top - tipH - 10;
+		} else {
+			ttTop = triggerPos.top + triggerH +10 ;
+		}
+
+		var overFlowRight = (triggerPos.left + tipW) - screenW;
+		if (overFlowRight > 0) {
+			ttLeft = triggerPos.left - overFlowRight - 10;
+		} else {
+			ttLeft = triggerPos.left;
+		}
+
+
+		$tip
+		   .css({
+			left : ttLeft ,
+			top : ttTop,
+			position: 'absolute'
+		    })
+			.fadeIn(200);
+	}); // mouseover 끝
+	$('.trigger').mouseout(function () {
+		$('.tooltip').fadeOut(200);
+	}); // mouseout 끝
+}); // ready 끝
+</script>
+</head>
+<body>
+<div class="wrapper">
+  <div class="header">
+    <p class="logo">JavaScript <i>&</i> jQuery <i class="mm">The<br>Missing<br>Manual</i></p>
+  </div>
+  <div class="content">
+    <div class="main">
+      <h1>툴팁</h1>
+	  <p>동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 남산 위에 저 소나무 <span class="trigger" data-tooltip="#tip1">철갑을 두른 듯</span> 바람 서리 불변함은 우리 기상일세 가을 하늘 공활한데 높고 구름 없이 밝은 달은 우리 가슴 일편단심일세 이 기상과 이 맘으로 충성을 다하여 괴로우나 즐거우나 나라 사랑하세</p>
+      <p>동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 남산 위에 저 소나무 철갑을 두른 듯 바람 서리 불변함은 우리 기상일세 가을 하늘 공활한데 높고 구름 없이 밝은 달은 우리 가슴 일편단심일세 이 기상과 이 맘으로 충성을 다하여 괴로우나 즐거우나 나라 사랑하세</p>
+      <p>동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 남산 위에 저 소나무 철갑을 두른 듯 바람 서리 불변함은 우리 기상일세 가을 하늘 공활한데 높고 구름 없이 밝은 달은 우리 가슴 일편단심일세 이 기상과 이 맘으로 충성을 다하여 괴로우나 즐거우나 나라 사랑하세</p>
+      <p>동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 남산 위에 저 소나무 철갑을 두른 듯 바람 서리 불변함은 우리 기상일세 가을 하늘 공활한데 높고 구름 없이 밝은 달은 우리 가슴 일편단심일세 이 기상과 이 맘으로 충성을 다하여 괴로우나 즐거우나 나라 사랑하세</p>
+	  <p>동해물과 <span class="trigger" data-tooltip="#tip2">백두산</span>이 마르고 닳도록 하느님이 보우하사 우리나라 만세 남산 위에 저 소나무 철갑을 두른 듯 바람 서리 불변함은 우리 기상일세 가을 하늘 공활한데 높고 구름 없이 밝은 달은 우리 가슴 일편단심일세 이 기상과 이 맘으로 충성을 다하여 괴로우나 즐거우나 나라 사랑하세</p>
+      <p>동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 남산 위에 저 소나무 철갑을 두른 듯 바람 서리 불변함은 우리 기상일세 가을 하늘 공활한데 높고 구름 없이 밝은 달은 우리 가슴 일편단심일세 이 기상과 이 맘으로 충성을 다하여 괴로우나 즐거우나 나라 사랑하세</p>
+      <p>동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 남산 위에 저 소나무 철갑을 두른 듯 바람 서리 불변함은 우리 기상일세 가을 하늘 공활한데 높고 구름 없이 밝은 달은 우리 가슴 일편단심일세 이 기상과 이 맘으로 충성을 다하여 괴로우나 즐거우나 나라 사랑하세</p>
+      <p>동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 남산 위에 저 소나무 철갑을 두른 듯 바람 서리 불변함은 우리 기상일세 가을 하늘 공활한데 높고 구름 없이 밝은 달은 우리 가슴 일편단심일세 이 기상과 이 맘으로 충성을 다하여 괴로우나 즐거우나 나라 사랑하세</p>
+    </div>
+
+  </div>
+  <div class="footer">
+    <p>JavaScript &amp; jQuery: The Missing Manual, by <a href="http://sawmac.com/">David McFarland</a>. Published by <a href="http://oreilly.com/">O'Reilly Media, Inc</a>.</p>
+  </div>
+</div>
+<div class="tooltip" id="tip1">
+    <h2>툴팁</h2>
+    <p>툴팁 내용입니다. div 태그 안에 원하는 내용은 무엇이든 추가할 수 있습니다.</p>
+</div>
+<div class="tooltip" id="tip2">
+    <h2>다른 툴팁</h2>
+    <p><img src="../_images/small/yellow_h.jpg" alt="yellow" width="70" height="70" class="imgRight">다른 툴팁입니다. 툴팁에는 사진도 넣을 수 있습니다. </p>
+</div>
+</body>
+</html>

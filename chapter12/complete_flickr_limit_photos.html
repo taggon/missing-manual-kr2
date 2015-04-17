@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>플리커 피드</title>
+<link href="../_css/site.css" rel="stylesheet">
+<style>
+.image {
+	float: left;
+	padding: 10px;
+	border: solid 1px white;
+	margin: 0 30px 30px 0;
+}
+.image:hover {
+	border-color: red;
+	background-color: rgb(204,204,204);
+}
+
+
+</style>
+<script src="../_js/jquery-1.11.2.min.js"></script>
+<script>
+$(document).ready(function() {
+
+var URL = "http://api.flickr.com/services/feeds/photos_public.gne";
+// 사용하고 싶은 아이디가 있다면 ID의 값을 다른 플리커 아이디로 바꾸세요.
+var ID = "25053835@N03"; // 스미소니언 재단의 아이디
+var jsonFormat = "&format=json&jsoncallback=?";
+var ajaxURL = URL + "?id=" + ID + jsonFormat;
+
+// 표시하고 싶은 사진의 갯수를 설정합니다(최대 20)
+var maxPhotos = 5;
+
+$.getJSON(ajaxURL,function(data) {
+	$('h1').text(data.title);
+	$.each(data.items,function(i,photo) {
+		if (i<maxPhotos) {
+			var photoHTML = '<span class="image">';
+			photoHTML += '<a href="' + photo.link + '">';
+			photoHTML += '<img src="' + photo.media.m.replace('_m','_s') + '"></a>';
+			$('#photos').append(photoHTML);
+		}
+	}); // each 끝
+}); // getJSON 끝
+
+}); // ready 끝
+</script>
+</head>
+<body>
+<div class="wrapper">
+	<div class="header">
+		<p class="logo">JavaScript <i>&amp;</i> jQuery <i class="mm">The<br>Missing<br>Manual</i></p>
+	</div>
+	<div class="content">
+		<div class="main">
+			<h1>플리커 이미지</h1>
+			<div id="photos"></div>
+			<br class="clearLeft">
+		</div>
+	</div>
+	<div class="footer">
+		<p>JavaScript &amp; jQuery: The Missing Manual, by <a href="http://sawmac.com/">David McFarland</a>. Published by <a href="http://oreilly.com/">O'Reilly Media, Inc</a>.</p>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>프로그램 디버깅</title>
+<link href="../_css/site.css" rel="stylesheet">
+<script src="../_js/jquery-1.11.2.min.js"></script>
+<script>
+$(document).ready(function() {
+var score = 0;
+var quiz = [
+  ['지구의 위성은 몇 개입니까?',1,[0,1,2,3]],
+  ['토성의 위성은 몇 개입니까?',31,[0,14,31,160]],
+  ['금성의 위성은 몇 개입니까?',1,[0,1,11,15]]
+];
+//질문의 총 개수 가져오기
+var totalQuestion=quiz.length;
+
+//질문을 만들고 객관식 문항 보여주기
+function askQuestion() {
+ // 질문 가져오기
+ var currentQ=quiz.pop();
+ // 질문 텍스트 가져오기
+ $('#question').text(currentQ[0]);
+ /* buildAnswers() 함수를 호출하여
+    객관식 문항 라디오 버튼 만들기 */
+ var answers=buildAnswers(currentQ[2]);
+ // 문항을 페이지에 추가하기
+ $('#answers').html(answers);
+ // click() 이벤트 핸들러를 사용해 사용자의 정답 평가
+ $('#answers input').click(function() {
+    if ($(this).val()==currentQ[1]) {
+      score++;
+      $('#result').prepend('정답입니다!');
+    } else {
+      $('#result').prepend('틀렸습니다. 정답은 '+currentQ[1]+'입니다.');
+    }
+    // 다음 버튼 보여주기
+    $('#next').show();
+  }); // click() 끝
+}
+
+function buildAnswers(answers) {
+  var answerHTML='';
+  // 객관식 문항 배열의 원소를 훑음
+  for (i=0;i<=answers.length;i++) {
+    //라디오 버튼 생성
+    answerHTML+=' <input name="quiz" type="radio" value="';
+    answerHTML+=answers[i] + '">' + answers[i];
+  }
+  //라디오 버튼이 전부 포함된 HTML 반환
+  return answerHTML;
+}
+
+function giveResults() {
+  var results='<p>전체 ' + totalQuestion + ' 문항 중 ' + score + '개를 맞추셨습니다.</p>';
+  $('#questionArea').html(results);
+}
+
+$('#next').click(function() {
+  $(this).hide();
+  $('#result').text('');
+  if (quiz.length==totalQuestion) {
+    $(this).val('다음 문제 >>');
+  } else if (quiz.length==1) {
+    $(this).val('결과 보기');
+  }
+  if (quiz.length>0) {
+    askQuestion();
+  } else {
+    giveResults();
+  }
+});
+
+
+}); // ready 끝
+</script>
+</head>
+<body>
+<div class="wrapper">
+	<div class="header">
+		<p class="logo">JavaScript <i>&</i> jQuery <i class="mm">The<br>Missing<br>Manual</i></p>
+	</div>
+	<div class="content">
+		<div class="main">
+			<h1>디버거 사용</h1>
+			<div id="questionArea">
+  <p id="question"></p>
+  <p id="answers"></p>
+  <p id="result"></p>
+  <input type="button" value="퀴즈 시작하기" id="next">
+  </div>
+		</div>
+	</div>
+	<div class="footer">
+		<p>JavaScript &amp; jQuery: The Missing Manual, by <a href="http://sawmac.com/">David McFarland</a>. Published by <a href="http://oreilly.com/">O'Reilly Media, Inc</a>.</p>
+	</div>
+</div>
+</body>
+</html>

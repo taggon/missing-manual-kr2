@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>변수의 생성과 사용</title>
+<link href="../_css/site.css" rel="stylesheet">
+<script>
+var authors = [ '어니스트 헤밍웨이',
+                '샬럿 브론테',
+                '단테 알리기에리',
+                '에밀리 디킨슨'
+              ];
+
+</script>
+</head>
+
+<body>
+<div class="wrapper">
+  <div class="header">
+    <p class="logo">JavaScript <i>&</i> jQuery <i class="mm">The<br>Missing<br>Manual</i></p>
+  </div>
+  <div class="content">
+    <div class="main">
+      <h1>변수의 생성과 사용</h1>
+      <script>
+		document.write('<p>첫 번째 작가는 <strong>');
+		document.write(authors[0] + '</strong>입니다.</p>');
+		document.write('<p>마지막 작가는 <strong>');
+		document.write(authors[authors.length-1] + '</strong>입니다.</p>');
+		authors.unshift('스탠 리');
+		document.write('<p>아, 이 분을 빼놓을 뻔 했습니다. <strong>');
+		document.write(authors[0]);
+		document.write('</strong>도 있습니다.</p>');
+		</script> </div>
+  </div>
+  <div class="footer">
+    <p>JavaScript &amp; jQuery: The Missing Manual, by <a href="http://sawmac.com/">David McFarland</a>. Published by <a href="http://oreilly.com/">O'Reilly Media, Inc</a>.</p>
+  </div>
+</div>
+</body>
+</html>

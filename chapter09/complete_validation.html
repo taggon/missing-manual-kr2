@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>웹 폼</title>
+<link href="../_css/site.css" rel="stylesheet">
+<style>
+#signup .indent label.error {
+	margin-left: 0;
+}
+#signup label.error {
+	font-size: 0.8em;
+	color: #F00;
+	font-weight: bold;
+	display: block;
+	margin-left: 215px;
+}
+#signup	input.error, #signup select.error	{
+	background: #FFA9B8;
+	border: 1px solid red;
+}
+</style>
+<script src="../_js/jquery-1.11.2.min.js"></script>
+<script src="../_js/jquery.validate.min.js"></script>
+<script>
+$(document).ready(function() {
+ $('#signup').validate({
+	 rules: {
+		 email: {
+				required: true,
+				email: true
+		 },
+		 password: {
+				required: true,
+				rangelength:[8,16]
+		 },
+		 confirm_password: {equalTo:'#password'},
+		 spam: "required"
+	 }, // rules 끝
+	 messages: {
+			email: {
+				 required: "이메일 주소를 입력해주세요.",
+				 email: "이메일 주소의 형식이 올바르지 않습니다."
+			 },
+			password: {
+				required: '패스워드를 입력해주세요',
+				rangelength: '패스워드의 길이는 8~16자만 가능합니다.'
+			},
+			confirm_password: {
+				equalTo: '패스워드가 일치하지 않습니다.'
+			}
+	 },
+	 errorPlacement: function(error, element) {
+			 if ( element.is(":radio") || element.is(":checkbox")) {
+					error.appendTo( element.parent());
+				} else {
+					error.insertAfter(element);
+				}
+		}
+
+	}); // validate 끝
+}); // ready 끝
+</script>
+</head>
+<body>
+<div class="wrapper">
+	<div class="header">
+		<p class="logo">JavaScript <i>&</i> jQuery <i class="mm">The<br>Missing<br>Manual</i></p>
+	</div>
+	<div class="content">
+	<div class="main">
+	<h1>회원가입</h1>
+		<form action="process.html" method="post" name="signup" id="signup">
+			<div>
+				<label for="name" class="label">이름 </label>
+				<input name="name" type="text" class="required" id="name" title="이름을 입력하세요.">
+			</div>
+			<div>
+				<label for="email" class="label">이메일 주소</label>
+				<input name="email" type="text" id="email">
+			</div>
+			<div>
+				<label for="password" class="label">패스워드</label>
+				<input name="password" type="password" id="password">
+			</div>
+			<div>
+				<label for="confirm_password" class="label">패스워드 확인</label>
+				<input name="confirm_password" type="password" id="confirm_password">
+			</div>
+			<div><span class="label">취미</span>
+				<input name="hobby" type="checkbox" id="heliskiing" value="heliskiing" class="required" title="취미는 최소 1개 이상 선택해야 합니다.">
+				<label for="heliskiing">헬리스키</label>
+				<input name="hobby" type="checkbox" id="pickle" value="pickle">
+				<label for="pickle">피클먹기</label>
+				<input name="hobby" type="checkbox" id="walnut" value="walnut">
+				<label for="walnut">땅콩버터 만들기</label>
+			</div>
+			<div>
+				<label for="dob" class="label">생년월일</label>
+				<input name="dob" type="text" id="dob" class="date" title="생년월일은 2000/01/19와 같이 입력해주세요.">
+			</div>
+			<div>
+				<label for="planet" class="label">Planet of Birth</label>
+				<select name="planet" id="planet" class="required" title="출신행성을 선택해주세요.">
+					<option value="">--출신행성을 선택하세요--</option>
+					<option value="earth">지구</option>
+					<option value="mars">화성</option>
+					<option value="alpha centauri">알파 센타우리</option>
+					<option value="forget about it">말해도 모를 겁니다</option>
+				</select>
+			</div>
+			<div>
+				<label for="comments" class="label">코멘트</label>
+				<textarea name="comments" cols="15" rows="5" id="comments"></textarea>
+			</div>
+			<div class="labelBlock">우리가 보내는 짜증나는 스팸 메일을 받으시겠습니까?</div>
+			<div class="indent">
+				<input	type="radio" name="spam" id="yes" value="yes" class="required" title="옵션을 선택해주세요">
+				<label for="yes">네</label>
+				<input type="radio" name="spam" id="definitely" value="definitely">
+				<label for="definitely">물론이죠</label>
+				<input type="radio" name="spam" id="choice" value="choice">
+				<label for="choice">선택이 가능해요?</label>
+			</div>
+			<div>
+				<input type="submit" name="submit" id="submit" value="전송">
+			</div>
+		</form>
+		</div>
+	</div>
+	<div class="footer">
+		<p>JavaScript &amp; jQuery: The Missing Manual, by <a href="http://sawmac.com/">David McFarland</a>. Published by <a href="http://oreilly.com/">O'Reilly Media, Inc</a>.</p>
+	</div>
+</div>
+</body>
+</html>

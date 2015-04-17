@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>콜백 함수(callback function) 사용</title>
+<link href="../_css/site.css" rel="stylesheet">
+<style>
+#figure {
+  position: relative;
+  width: 400px;
+  margin: 0 auto;
+}
+
+#caption {
+	position: absolute;
+	width: 	340px;
+	background-color: black;
+	bottom: 10px;
+	left: 24px;
+	padding: 5px;
+	border: 1px solid white;
+}
+</style>
+<script src="../_js/jquery-1.11.2.min.js"></script>
+<script>
+$(document).ready(function() {
+$('#photo').width(0).height(0).css('opacity',0);
+$('#caption').hide();
+$('html').click(function() {
+	$('#photo').animate(
+	   {
+		  width: '400px',
+		  height: '300px',
+		  opacity: 1
+	   },
+	   1000, 
+	   function() {
+		  $('#caption').fadeIn(1000);
+	   }
+	); // end animate
+}); // end click
+});
+</script>
+</head>
+<body>
+<div class="wrapper">
+<div class="header">
+	<p class="logo">JavaScript <i>&</i> jQuery <i class="mm">The<br>Missing<br>Manual</i></p>
+</div>
+<div class="content">
+	<div class="main">
+<h1>animate() 함수와 콜백 함수 사용</h1>
+<p>아무 곳이나 클릭하면 애니메이션을 시작합니다</p>
+<div id="figure"><img src="../_images/pencils.jpg" width="400" height="300" alt="pencils" id="photo">
+<p id="caption">연필!!!!!!</p></div>
+	</div>
+</div>
+<div class="footer">
+<p>JavaScript &amp; jQuery: The Missing Manual, by <a href="http://sawmac.com/">David McFarland</a>. Published by <a href="http://oreilly.com/">O'Reilly Media, Inc</a>.</p>
+</div>
+</div>
+</body>
+</html>
