@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript &amp; jQuery:The Missing Manual</title>
+<link href="../_css/site.css" rel="stylesheet">
+<script src="../_js/jquery-1.11.2.min.js"></script>
+<script src="../_js/site.js"></script><script>
+$(document).ready(function( ) {
+function results(type,code,expl) {
+	if (type=="reset") {
+		$('.results div').not('#start').hide();
+		items = ['shoes', 'socks', 'belt', 'hat'];
+	} else {
+		$('.results div').show();
+	}
+
+	if (items[0]!=undefined) {
+		$('#start code').html(items.toString());
+	} else {
+		$('#start code').html('<strong>빈 배열</strong>');
+	}
+		$('#code code').html(code);
+		var originalItems = items.toString();
+		var returnVal = eval(code);
+	if (items[0]!=undefined) {
+		if (originalItems==items.toString()) {
+		$('#finish code').html('<strong>Array unchanged</strong>');
+		} else {
+		$('#finish code').html(items.toString());
+		}
+	} else {
+		$('#finish code').html('<strong>빈 배열</strong>');
+	}
+		if (returnVal) {
+		$('#return code').html(returnVal.toString());
+		} else {
+		$('#return code').html('nothing returned');
+		}
+
+		$('#explanation code').html(expl);
+	}
+
+
+	$('.results div').not('#start').hide();
+	$('.example').click(function() {
+			var $this = $(this);
+			var resetA = $(this).hasClass('reset');
+			var code = resetA ? "var items = ['shoes', 'socks', 'belt', 'hat'];" : $this.text();
+			var expl = $this.attr('title') || 'none';
+			var type = resetA ? 'reset' : 'update';
+			results(type,code,expl);
+	});
+
+	results('reset',"var items = ['shoes', 'socks', 'belt', 'hat'];",false);
+
+
+});
+
+
+</script>
+</head>
+
+<body>
+<div class="wrapper">
+  <div class="header">
+    <p class="logo">JavaScript <i>&</i> jQuery <i class="mm">The<br>
+      Missing<br>
+      Manual</i></p>
+  </div>
+  <div class="content">
+    <div class="main">
+      <div id="main">
+        <h1>Array Test Bed</h1>
+        <div class="results">
+          <h2>결과</h2>
+          <div id="start"><strong>시작할 때의 items[] 내용:</strong> <code>&nbsp;</code></div>
+          <div id="code"><strong>자바스크립트 코드:</strong> <code>&nbsp;</code></div>
+          <div id="finish"><strong>자바스크립트를 실행한 후의 items[] 내용:</strong> <code>&nbsp;</code></div>
+          <div id="return"><strong>반환된 값: </strong><code>&nbsp;</code></div>
+          <div id="explanation"><strong>설명:</strong><code class="explanation">&nbsp;blah</code></div>
+          <div id="reset">
+            <p class="example reset">배열 재설정</p>
+          </div>
+        </div>
+
+        <!--<h2>Original Array</h2>
+		<p class="example" title="Initializes array with 4 items">items = ['shoes', 'socks', 'belt', 'hat'];</p>-->
+        <div class="unit">
+          <h2>Splice</h2>
+          <p class="example" title="3번째 원소를 제거하고 원소 두 개를 새로 추가한다.">items.splice(2,1,'coat','scarf');</p>
+          <h2>Push</h2>
+          <p class="example" title="배열 끝에 원소 두 개를 추가하고 배열의 전체 원소 갯수를 반환한다.">items.push('umbrella','shirt');</p>
+          <h2>Unshift</h2>
+          <p class="example" title="배열 앞에 원소 두 개를 추가하고 배열의 전체 원소 갯수를 반환한다.">items.unshift('tie','pants');</p>
+          <h2>Shift</h2>
+          <p class="example" title="배열 제일 앞에 있는 원소를 제거한다.">items.shift();</p>
+        </div>
+        <div class="unit">
+          <h2>Pop</h2>
+          <p class="example" title="배열 제일 끝에 있는 원소를 제거한다.">items.pop();</p>
+          <h2>Slice</h2>
+          <p class="example" title="원래 배열의 한 조각(slice)으로 새 배열로 만든다. 첫 번째 숫자는 시작 인덱스이고 두 번째 숫자는 끝 인덱스이다.">items.slice(1,2);</p>
+          <h2>Reverse</h2>
+          <p class="example" title="배열 원소의 순서를 반대로 정렬한다.">items.reverse();</p>
+          <h2>Join</h2>
+          <p class="example" title="각 배열 원소의 값을 합쳐 하나의 문자열로 만든다. join() 명령에 전달된 문자열은 각 원소 사이에 위치하는 구분자로 사용된다.">items.join(':');</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <p>JavaScript &amp; jQuery: The Missing Manual, by <a href="http://sawmac.com/">David McFarland</a>. Published by <a href="http://oreilly.com/">O'Reilly Media, Inc</a>.</p>
+  </div>
+  <div id="resources">
+    <p class="open">+</p>
+    <h2>Test Beds</h2>
+    <ul class="nav">
+      <li><a href="selectors.html">jQuery Selectors Testbed</a></li>
+      <li><a href="content_functions.html">jQuery Content Functions Test Bed</a></li>
+      <li><a href="events.html">Events Test Bed</a></li>
+      <li><a href="effects.html">jQuery Effects Test Bed</a></li>
+      <li><a href="array_methods.html">Array Methods</a></li>
+      <li><a href="regex_tester.html">Regular Expression Tester</a></li>
+    </ul>
+    <h2>jQuery Resources</h2>
+    <ul class="nav">
+      <li><a href="http://jquery.com">jQuery</a></li>
+      <li><a href="http://juqeryui.com/">jQuery UI</a></li>
+      <li><a href="http://jquerymobile.com/">jQuery Mobile</a></li>
+      <li><a href="http://jqapi.com/">jQAPI.com</a></li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>
